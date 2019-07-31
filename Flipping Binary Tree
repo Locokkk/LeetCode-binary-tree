@@ -1,0 +1,23 @@
+struct TreeNode {
+	int val;
+	struct TreeNode *left;
+	struct TreeNode *right;
+};
+
+
+//翻转二叉树 例：4,2,7,1,3,6,9->4,7,2,9,6,3,1
+typedef struct TreeNode TreeNode;
+struct TreeNode* invertTree(struct TreeNode* root) {
+
+	if (root == NULL)
+		return NULL;
+
+	TreeNode *t;
+	t = root->left;
+	root->left = root->right;
+	root->right = t;
+
+	invertTree(root->left);
+	invertTree(root->right);
+	return root;
+}
